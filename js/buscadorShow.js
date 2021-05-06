@@ -3,13 +3,13 @@ const d = document,
 	$template = d.getElementById('template').content,
 	$card = $template.querySelector('.card'),
 	$fragment = d.createDocumentFragment(),
-	api = 'http://api.tvmaze.com/search/shows?q=';
+	api = 'https://api.tvmaze.com/search/shows?q=';
 
 let keyShow;
 
 const getShow = async (serie) => {
 	try {
-		let res = await fetch(`http://api.tvmaze.com/search/shows?q=${serie}`),
+		let res = await fetch(`${api}${serie}`),
 			json = await res.json();
 		$main.innerHTML = '';
 
@@ -25,7 +25,7 @@ const getShow = async (serie) => {
 					: 'Sin Descripción';
 				$template.querySelector('img').src = el.show.image
 					? el.show.image.medium
-					: 'http://static.tvmaze.com/images/no-img/no-img-portrait-text.png';
+					: 'https://static.tvmaze.com/images/no-img/no-img-portrait-text.png';
 				$template.querySelector('img').alt = el.show.name;
 				$template.querySelector('a').href = el.show.url ? el.show.url : '#';
 				$template.querySelector('a').textContent = 'Ver más';
